@@ -4,6 +4,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@800&family=Montserrat:wght@200&family=Prompt&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Arimo:wght@600&display=swap');
 
 *{
     margin: 0;
@@ -167,22 +168,55 @@
 }
 #song-holder{
     /* border: 2px solid rgb(4, 107, 93); */
-    width: 50vw;
+    width: 35vw;
+    padding: 0px 80px;
 }
 #song-holder div:nth-child(1){
     /* border: 2px solid rgb(4, 107, 93); */
     font-size: 30px;
     font-family: 'Prompt', sans-serif;
 }
-#artist-holder{
-    /* border: 2px solid rgb(0, 162, 255); */
+.song-container{
+    /* border: 2px solid red; */
+    /* margin-top: 10px; */
+    margin: 10px 0px;
+    padding: 20px 0px;
+    border-bottom: 1px solid #d2d2d2;
+    font-family: 'Arimo', sans-serif;
+}
+.song-container span{
+    margin-left: 66px;
+    /* font-family: 'Arimo', sans-serif; */
+}
+.artist-container{
+    display: flex;
+    align-items: center;
+    margin: 30px 0px;
 }
 #artist-holder div:nth-child(1){
-    /* border: 2px solid rgb(4, 107, 93); */
     font-size: 30px;
     font-family: 'Prompt', sans-serif;
 }
-
+.artist-container img{
+    height: 60px;
+    border-radius: 200px;
+}
+.artist-container span{
+    /* color: red; */
+    margin-left: 30px;
+    font-family: 'Arimo', sans-serif;
+    margin-bottom: 20px;
+}
+.artist-container div{
+    margin-top: 25px;
+    font-size: 12px;
+    color: gray;
+    position: relative;
+    right: 86px;
+}
+.avicii div{
+    right: 40px;
+}
 /* -------------------------------------------------------- */
     /* bottom-containter starts */
 
