@@ -39,7 +39,19 @@ import {
     Link
 } from "react-router-dom";
 
+import { useState } from 'react'
+
 export default function Body() {
+
+    const[pbValue, setPbValue] = useState(0);
+
+    const setTime=(e,aud)=>{
+        // let value = e.target.value
+        // aud.currentTime = value * aud.duration /100; 
+    }
+
+    const [currentSong, setCurrentSong] = useState(null);
+
     return (
         <>
             <Router>
@@ -80,45 +92,27 @@ export default function Body() {
                             {/* <span className='main-container-2-imgHolder'><img src={ts} alt="" /></span> */}
                         </div>
                         <div id='main-container-3'>
-                            <div id='song-holder'>
-                                <div>This Week: Most Trending Music</div>
-                                <Routes>
-                                    <Route path="/about" element={<ArtistsTest/>}>
-                                    </Route>
-                                    <Route path="/" element={<Song1 />}>
-                                    </Route>
-                                </Routes>
-                            </div>
+                            <Routes>
+                                <Route path="/about" element={<ArtistsTest />}>
+                                </Route>
+                                <Route path="/" element={<Song1 currentSong={currentSong} setCurrentSong={setCurrentSong} />}>
+                                </Route>
+                            </Routes>
                             <div id="artist-holder">
                                 <div>Listen This Weekend</div>
                                 <div className="artist-container avicii"><img src={avicii} alt="" /> <span>Avicii</span><div>If there is love in this life, we're unstopabble.</div></div>
                                 <div className="artist-container"><img src={note} alt="" /> <span>Dream Note</span><div>If there is love in this life, we're unstopabble.</div></div>
                                 <div className="artist-container"><img src={swift} alt="" /> <span>Taylor Swift</span><div>If there is love in this life, we're unstopabble.</div></div>
-                                {/* <div className="artist-container">artist1</div>
-                                <div className="artist-container">artist1</div> */}
+                            </div>
                         </div>
                     </div>
+
                 </div>
 
-            </div>
-
-            <div id="bottom-container">
-                <BottomContainer/>
-                {/* <div id="control-buttons">
-                    <div className='control-buttons-img-holder'><img src={backward} alt="" /></div>
-                    <div className='control-buttons-img-holder play' id='play-pause-button' onClick={UseeffectTesting}></div>
-                    <div className='control-buttons-img-holder'><img src={forward} alt="" /></div>
+                <div id="bottom-container">
+                    <BottomContainer pbValue={pbValue} setPbValue={setPbValue} setTime={setTime} />
                 </div>
-                <div id="progress-bar">
-                    <input type="range" name="" id="slider" min='0' max='100' />
-                    <img src={speaker} alt="" />
-                </div>
-                <div id='otherstuff'>
-
-                </div> */}
-
-            </div>
-        </Router >
+            </Router >
         </>
     )
 }

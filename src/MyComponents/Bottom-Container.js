@@ -8,10 +8,8 @@ import speaker from './Image/speaker.png'
 import pause from './Image/pause.png'
 import { useEffect } from 'react'
 
-export default function BottomContainer() {
-
-    // let aud = new Audio(require('./songs/faded.mp3'))
-    const [aud] = useState(new Audio(require('./songs/faded.mp3')));
+export default function BottomContainer(props) {
+    const [aud] = useState(new Audio(require('./songs/3.mp3')));
     let progressbar =document.getElementById('slider');
     
     const clicked = () =>{
@@ -32,25 +30,21 @@ export default function BottomContainer() {
         }
     }
 
-    const[pbValue, setPbValue] = useState(0);
+    // const[pbValue, setPbValue] = useState(0);
     useEffect(() => {
         const handle = () =>{
             let progress = parseInt((aud.currentTime/aud.duration)*100);
             console.log("useeffect TIme: ", progress)
-            setPbValue(progress);
+            props.setPbValue(progress);
         }
         aud.addEventListener('timeupdate', handle);
 
     }, [])
 
-    // let progressbar=document.getElementById('slider');
-    // progressbar.addEventListener('change', () =>{
-    //     aud.currentTime = pbValue * aud.duration /100;
-    // })
-    const setTime=(e)=>{
-        let value = e.target.value
-        aud.currentTime = value * aud.duration /100; 
-    }
+    // const setTime=(e)=>{
+    //     let value = e.target.value
+    //     aud.currentTime = value * aud.duration /100; 
+    // }
     
 
 
@@ -62,7 +56,7 @@ export default function BottomContainer() {
                 <div className='control-buttons-img-holder'><img src={forward} alt="" /></div>
             </div>
             <div id="progress-bar">
-                <input type="range" name="" id="slider" min={0} max={100} value={pbValue} onChange={setTime} />
+                <input type="range" name="" id="slider" min={0} max={100} value={props.pbValue} onChange={props.setTime(aud)} />
                 <img src={speaker} alt="" />
             </div>
             <div id='otherstuff'>
