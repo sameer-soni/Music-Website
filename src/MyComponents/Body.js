@@ -1,7 +1,6 @@
 import React from 'react'
 import './style.css'
 import Song1 from './Song1'
-import ArtistsTest from './ArtistsTest'
 
 import playlist from './Image/playlist.png'
 import artist from './Image/artist.png'
@@ -24,10 +23,6 @@ import backward from './Image/backward-arrows.png'
 import speaker from './Image/speaker.png'
 import pause from './Image/pause.png'
 
-//scripts
-import Audio from './Audio.js'
-import UseeffectTesting from './UseeffectTesting'
-
 //diff files
 import BottomContainer from './Bottom-Container'
 
@@ -39,18 +34,78 @@ import {
     Link
 } from "react-router-dom";
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Body() {
 
-    const[pbValue, setPbValue] = useState(0);
+    //----------------Bottom-container-Starts--------------------------------------------
+    // const [aud] = useState(new Audio(require('./songs/3.mp3')));
+    // let progressbar = document.getElementById('slider');
 
-    const setTime=(e,aud)=>{
-        // let value = e.target.value
-        // aud.currentTime = value * aud.duration /100; 
+    const clicked = () => {
+        console.log('clicked');
+        // console.log(aud.currentTime);
+
+        // if( aud.paused||aud.currentTime <=0){
+        //     aud.play();
+        //     let b = document.getElementById('play-pause-button');
+        //     b.classList.remove('play');
+        //     b.classList.add('pause');
+        //    console.log(b)
+        // }else{
+        //     aud.pause();
+        //     let b = document.getElementById('play-pause-button');
+        //     b.classList.remove('pause');
+        //     b.classList.add('play');
+        // }
+    }
+    const [currentSong, setCurrentSong] = useState(null);
+    const [pbValue, setPbValue] = useState(0);
+
+    useEffect(() => {
+        if(currentSong){
+            const audy = currentSong.audio;
+            
+            const handle = () => {
+                let progress = parseInt((audy.currentTime / audy.duration) * 100);
+                setPbValue(progress);
+            }
+            audy.addEventListener('timeupdate', handle);
+        }
+            
+
+    }, [currentSong])
+
+    const setTime = (e) => {
+        let value = e.target.value
+       currentSong.audio.currentTime = value *currentSong.audio.duration /100; 
     }
 
-    const [currentSong, setCurrentSong] = useState(null);
+
+    const handleSongClick = (song) => {
+        if (currentSong && currentSong.id === song.id) {
+            // If the clicked song is already playing, pause it
+            currentSong.audio.pause();
+            setCurrentSong(null);
+            return;
+        }
+
+        if (currentSong) {
+            // Pause the current song
+            currentSong.audio.pause();
+        }
+
+        // Play the clicked song
+        const audio = new Audio(require(`./songs/${song.src}`));
+        audio.play();
+        setCurrentSong({ id: song.id, audio });
+
+
+    };
+
+
+
+    //--------------------------Song1_ENDS-----------------------------------------------------------------
 
     return (
         <>
@@ -93,9 +148,9 @@ export default function Body() {
                         </div>
                         <div id='main-container-3'>
                             <Routes>
-                                <Route path="/about" element={<ArtistsTest />}>
+                                <Route path="/about">
                                 </Route>
-                                <Route path="/" element={<Song1 currentSong={currentSong} setCurrentSong={setCurrentSong} />}>
+                                <Route path="/" element={<Song1 handleSongClick={handleSongClick} />}>
                                 </Route>
                             </Routes>
                             <div id="artist-holder">
@@ -110,7 +165,20 @@ export default function Body() {
                 </div>
 
                 <div id="bottom-container">
-                    <BottomContainer pbValue={pbValue} setPbValue={setPbValue} setTime={setTime} />
+                    <div id="control-buttons">
+                        <div className='control-buttons-img-holder'><img src={backward} alt="" /></div>
+                        <div className='control-buttons-img-holder play' id='play-pause-button' onClick={clicked}></div>
+                        <div className='control-buttons-img-holder'><img src={forward} alt="" /></div>
+                    </div>
+                    <div id="progress-bar">
+                        <input type="range" name="" id="slider" min={0} max={100} value={pbValue} onChange={setTime} />
+                        <img src={speaker} alt="" />
+                    </div>
+                    <div id='otherstuff'>
+
+                    </div>
+
+                    {/* <BottomContainer pbValue={pbValue} setPbValue={setPbValue} setTime={setTime} /> */}
                 </div>
             </Router >
         </>

@@ -13,31 +13,31 @@ export default function Song1(props) {
 
 //   const [currentSong, setCurrentSong] = useState(null);
 
-  const handleSongClick = (song) => {
-    if (props.currentSong && props.currentSong.id === song.id) {
-      // If the clicked song is already playing, pause it
-      props.currentSong.audio.pause();
-      props.setCurrentSong(null);
-      return;
-    }
+//   const handleSongClick = (song) => {
+//     if (props.currentSong && props.currentSong.id === song.id) {
+//       // If the clicked song is already playing, pause it
+//       props.currentSong.audio.pause();
+//       props.setCurrentSong(null);
+//       return;
+//     }
   
-    if (props.currentSong) {
-      // Pause the current song
-      props.currentSong.audio.pause();
-    }
+//     if (props.currentSong) {
+//       // Pause the current song
+//       props.currentSong.audio.pause();
+//     }
   
-    // Play the clicked song
-    const audio = new Audio(require(`./songs/${song.src}`));
-    audio.play();
-    props.setCurrentSong({ id: song.id, audio });
-  };
+//     // Play the clicked song
+//     const audio = new Audio(require(`./songs/${song.src}`));
+//     audio.play();
+//     props.setCurrentSong({ id: song.id, audio });
+//   };
 
   return (
     <>
       <div id='song-holder'>
         <div>This Week: Most Trending Music</div>
         {songlist.map((song) => (
-          <div key={song.id} className='song-container' onClick={() => handleSongClick(song)}>{song.id}.<span>{song.name}</span>
+          <div key={song.id} className='song-container' onClick={() => props.handleSongClick(song)}>{song.id}.<span>{song.name}</span>
           </div>
         ))}
       </div>
