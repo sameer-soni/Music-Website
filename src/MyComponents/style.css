@@ -183,10 +183,18 @@
     padding: 20px 0px;
     border-bottom: 1px solid #d2d2d2;
     font-family: 'Arimo', sans-serif;
+    /* background-color:#f8f8f8 */
+    
 }
 .song-container span{
     margin-left: 66px;
     /* font-family: 'Arimo', sans-serif; */
+}
+.song-container:hover{
+    /* background-color: #f8f8f8; */
+    cursor: pointer;
+    background-image: linear-gradient(rgb(255 255 255),#fdfdff, #ebe7eb);
+    /* border-radius: 10px; */
 }
 .artist-container{
     display: flex;
@@ -221,8 +229,6 @@
     /* bottom-containter starts */
 
 #control-buttons{
-    /* border: 2px solid red; */
-    /* margin-top: auto; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -230,18 +236,37 @@
 }
 .control-buttons-img-holder{
     margin: 0px 10px;
-    /* border: 2px solid green; */
 }
 #control-buttons img{
     height: 20px;
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(129deg) brightness(95%) contrast(87%);
 }
-#control-buttons div:nth-child(2) img{
+/* #control-buttons div:nth-child(2) img{
     height: 40px;
     filter: invert(16%) sepia(95%) saturate(7496%) hue-rotate(311deg) brightness(110%) contrast(110%);
     
     border-radius:50px;
     background-color: #fdfdfd;
+} */
+.play{
+    /* border: 2px solid red; */
+    height: 45px;
+    width: 45px;
+    background-image: url('./Image/play-button.png');
+    background-size: cover;
+    filter: invert(16%) sepia(95%) saturate(7496%) hue-rotate(311deg) brightness(110%) contrast(110%);
+    background-color: white;
+    border-radius: 50px;
+}
+.pause{
+    /* border: 2px solid red; */
+    height: 45px;
+    width: 45px;
+    background-image: url('./Image/pause.png');
+    background-size: cover;
+    filter: invert(16%) sepia(95%) saturate(7496%) hue-rotate(311deg) brightness(110%) contrast(110%);
+    background-color: white;
+    border-radius: 50px;
 }
 #progress-bar{
     /* border: 2px solid rgb(0, 255, 21); */

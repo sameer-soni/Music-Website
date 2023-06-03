@@ -1,6 +1,7 @@
 import React from 'react'
 import './style.css'
 import Song1 from './Song1'
+import ArtistsTest from './ArtistsTest'
 
 import playlist from './Image/playlist.png'
 import artist from './Image/artist.png'
@@ -21,9 +22,14 @@ import play from './Image/play-button.png'
 import forward from './Image/fast-forward.png'
 import backward from './Image/backward-arrows.png'
 import speaker from './Image/speaker.png'
+import pause from './Image/pause.png'
 
 //scripts
-import playButton from './audio.js'
+import Audio from './Audio.js'
+import UseeffectTesting from './UseeffectTesting'
+
+//diff files
+import BottomContainer from './Bottom-Container'
 
 import {
     BrowserRouter as Router,
@@ -41,8 +47,8 @@ export default function Body() {
                     <div id="left-container">
                         <div id="library-box">
                             <div className='lib-heading'>LIBRARY</div>
-                            <div className='lib-items'><img src={playlist} alt="" /><a href="">Playlists</a></div>
-                            <div className='lib-items'><img src={artist} alt="" />Artists</div>
+                            <div className='lib-items'><img src={playlist} alt="" /><Link to="/">Playlists</Link></div>
+                            <div className='lib-items'><img src={artist} alt="" /><Link to="/about">Artists</Link></div>
                             <div className='lib-items'><img src={album} alt="" />Albums</div>
                             <div className='lib-items'><img src={song} alt="" />Songs</div>
                         </div>
@@ -77,7 +83,7 @@ export default function Body() {
                             <div id='song-holder'>
                                 <div>This Week: Most Trending Music</div>
                                 <Routes>
-                                    <Route path="/about">
+                                    <Route path="/about" element={<ArtistsTest/>}>
                                     </Route>
                                     <Route path="/" element={<Song1 />}>
                                     </Route>
@@ -97,9 +103,10 @@ export default function Body() {
             </div>
 
             <div id="bottom-container">
-                <div id="control-buttons">
+                <BottomContainer/>
+                {/* <div id="control-buttons">
                     <div className='control-buttons-img-holder'><img src={backward} alt="" /></div>
-                    <div className='control-buttons-img-holder'><img src={play} alt="" onClick={playButton} /></div>
+                    <div className='control-buttons-img-holder play' id='play-pause-button' onClick={UseeffectTesting}></div>
                     <div className='control-buttons-img-holder'><img src={forward} alt="" /></div>
                 </div>
                 <div id="progress-bar">
@@ -108,7 +115,7 @@ export default function Body() {
                 </div>
                 <div id='otherstuff'>
 
-                </div>
+                </div> */}
 
             </div>
         </Router >
