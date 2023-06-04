@@ -1,6 +1,12 @@
 import React from 'react'
 import './style.css'
+
+//songs
 import Song1 from './Song1'
+    //artist's songs
+import AviciiSongs from './ArtistsSongs/AviciiSongs'
+import TaylorSwift from './ArtistsSongs/TaylorSwift'
+import OneDirection from './ArtistsSongs/OneDirection'
 
 import playlist from './Image/playlist.png'
 import artist from './Image/artist.png'
@@ -14,7 +20,7 @@ import idk from './Image/artists/idk.jpg'
 
 // album main right
 import avicii from './Image/artists/face/avicii.png'
-import note from './Image/artists/face/note.png'
+import OneD from './Image/artists/face/1D.png'
 import swift from './Image/artists/face/swift.png'
 
 import play from './Image/play-button.png'
@@ -61,6 +67,7 @@ export default function Body() {
     }
     const [currentSong, setCurrentSong] = useState(null);
     const [pbValue, setPbValue] = useState(0);
+    const [currentsongID, setcurrentsongID] = useState(null);
 
     useEffect(() => {
         if(currentSong){
@@ -87,20 +94,23 @@ export default function Body() {
             // If the clicked song is already playing, pause it
             currentSong.audio.pause();
             setCurrentSong(null);
+            setcurrentsongID(null);
             return;
         }
 
         if (currentSong) {
             // Pause the current song
             currentSong.audio.pause();
+            setcurrentsongID(null);
         }
 
         // Play the clicked song
         const audio = new Audio(require(`./songs/${song.src}`));
         audio.play();
         setCurrentSong({ id: song.id, audio });
-
-
+        setcurrentsongID(song.id);
+        // console.log(song.id)
+        
     };
 
 
@@ -148,16 +158,20 @@ export default function Body() {
                         </div>
                         <div id='main-container-3'>
                             <Routes>
-                                <Route path="/about">
+                                <Route exact path="/Artists/Avicii" element={<AviciiSongs handleSongClick={handleSongClick} currentsongID={currentsongID}/>}>
+                                </Route >
+                                <Route exact path="/Artists/OneDirection" element={<OneDirection handleSongClick={handleSongClick} currentsongID={currentsongID}/>}>
+                                </Route >
+                                <Route exact path="/Artists/TaylorSwift" element={<TaylorSwift handleSongClick={handleSongClick} currentsongID={currentsongID}/>}>
                                 </Route>
-                                <Route path="/" element={<Song1 handleSongClick={handleSongClick} />}>
+                                <Route exact path="/" element={<Song1 handleSongClick={handleSongClick} />}>
                                 </Route>
                             </Routes>
                             <div id="artist-holder">
                                 <div>Listen This Weekend</div>
-                                <div className="artist-container avicii"><img src={avicii} alt="" /> <span>Avicii</span><div>If there is love in this life, we're unstopabble.</div></div>
-                                <div className="artist-container"><img src={note} alt="" /> <span>Dream Note</span><div>If there is love in this life, we're unstopabble.</div></div>
-                                <div className="artist-container"><img src={swift} alt="" /> <span>Taylor Swift</span><div>If there is love in this life, we're unstopabble.</div></div>
+                                <Link to="/Artists/Avicii"><div className="artist-container avicii"><img src={avicii} alt="" /> <span id='avi-ci'>Avicii</span><div>If there is love in this life, we're unstopabble.</div></div></Link>
+                                <Link to="/Artists/OneDirection"><div className="artist-container OneD"><img src={OneD} alt="" /> <span id='OD'>One-Direction</span><div>If there is love in this life, we're unstopabble.</div></div></Link>
+                                <Link to="/Artists/TaylorSwift"><div className="artist-container Tswift"><img src={swift} alt="" /> <span id='ts'>Taylor Swift</span><div>If there is love in this life, we're unstopabble.</div></div></Link>
                             </div>
                         </div>
                     </div>

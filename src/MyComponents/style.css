@@ -102,7 +102,7 @@
     margin-top: 40px;
     padding: 10px;
 }
-#main-container-1 spanr{
+#main-container-1 span{
     /* border: 2px solid rgb(53, 17, 153); */
 }
 #main-container-1 span:nth-child(1){
@@ -142,7 +142,13 @@
 }
 .main-container-2-imgHolder:nth-child(1) img{
     height: 200px;
-    /* margin-left: 80px; */
+    /* margin-
+    left: 80px; */
+}
+.main-container-2-imgHolder img:hover{
+    border: 2px solid rgb(247, 24, 255);
+    /* height: 250px; */
+    cursor: pointer;
 }
 #SearchBar{
     width: 220px;
@@ -193,8 +199,12 @@
 .song-container:hover{
     /* background-color: #f8f8f8; */
     cursor: pointer;
-    background-image: linear-gradient(rgb(255 255 255),#fdfdff, #ebe7eb);
+    /* background-image: linear-gradient(rgb(255 255 255),#fdfdff, #ebe7eb); */
+    /* background-image: linear-gradient(rgb(255 255 255),#fdfdff, #ceabce); */
+    /* backdrop-filter: blur(9px); */
     /* border-radius: 10px; */
+    border-bottom:1px solid rgb(236, 7, 206);
+    color: rgb(255, 62, 197);
 }
 .artist-container{
     display: flex;
@@ -205,15 +215,21 @@
     font-size: 30px;
     font-family: 'Prompt', sans-serif;
 }
+#artist-holder a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    /* font-size: 40px; */
+}
 .artist-container img{
     height: 60px;
     border-radius: 200px;
 }
 .artist-container span{
     /* color: red; */
-    margin-left: 30px;
+    /* margin-left: 30px; */
     font-family: 'Arimo', sans-serif;
     margin-bottom: 20px;
+    /* font-size: 10px; */
 }
 .artist-container div{
     margin-top: 25px;
@@ -222,9 +238,50 @@
     position: relative;
     right: 86px;
 }
-.avicii div{
-    right: 40px;
+.artist-container:hover{
+    border: 1px solid rgb(235, 17, 235);
+    background-color: pink;
 }
+.avicii div{
+    /* margin-left: ; */
+    right: 50px;
+    /* font-size: 5px; */
+}
+#avi-ci{
+    /* border: 2px solid green; */
+    font-size: 20px;
+    margin-left: 20px;
+}
+.OneD div{
+    /* right: 500px; */
+    right: 127px;
+    margin-top: 40px;
+}
+#OD{
+    /* left: 50px; */
+    margin-left: 20px;
+    font-size: 20px;
+    width: 140px;
+    margin-bottom: 35px;
+    margin-left: 20px;
+}
+.Tswift div{
+    right: 113px;
+    margin-top: 40px;
+    /* width: 263px; */
+}
+#ts{
+    font-size: 20px;
+    /* padding: 0px 20px; */
+    width: 124px;
+    margin-bottom: 35px;
+    margin-left: 20px;
+    
+}
+.activee{
+    color: rgb(248, 27, 193) !important;
+}
+
 /* -------------------------------------------------------- */
     /* bottom-containter starts */
 
@@ -262,7 +319,7 @@
     /* border: 2px solid red; */
     height: 45px;
     width: 45px;
-    background-image: url('./Image/pause.png');
+    background-image: url('./Image/play-button.png');
     background-size: cover;
     filter: invert(16%) sepia(95%) saturate(7496%) hue-rotate(311deg) brightness(110%) contrast(110%);
     background-color: white;
